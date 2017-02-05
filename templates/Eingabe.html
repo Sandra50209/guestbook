@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Dein Eintrag</title>
+    </head>
+    <body>
+    Vielen Dank {{message}} für deinen Eintrag!</br>
+    Deine Eingabe:
+        <ul>
+            {% for message in name %}
+            <li>
+                <a href="/name/{{message.key.id()}}/Eingabe">
+                    {{message.message_text}}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    Möchtest du etwas ändern, klicke bitte <a href="/change">hier!
+    </body>
+</html>

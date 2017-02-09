@@ -8,13 +8,9 @@
     Vielen Dank {{message}} für deinen Eintrag!</br>
     Deine Eingabe:
         <ul>
-            {% for message in name %}
-            <li>
-                <a href="/name/{{message.key.id()}}/Eingabe">
-                    {{message.message_text}}
-                </a>
-            </li>
-            {% endfor %}
+            <li>{{message}}</li>
+            <li>{{name}}</li>
+            <li>{{comment}}</li>
         </ul>
     Möchtest du etwas ändern, klicke bitte <a href="/change">hier!
     </body>

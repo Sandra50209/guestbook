@@ -35,15 +35,18 @@ class MainHandler(BaseHandler):
 class ResultHandler(BaseHandler):
     def post(self):
         parameters = {}
-        parameters["message"] = self.request.get("name")
-        message = Message(message_text=parameters["message"])
+        parameters["message"] = self.request.get("Name")
+        parameters["name"] = self.request.get("Email")
+        parameters["comment"] = self.request.get("Kommentar")
+        message = Message(message_text=parameters["message"], email_text=parameters["name"], comment_text=parameters["comment"])
         message.put()
+        parameters["messages"] = Message.query().fetch()
         return self.render_template("Eingabe.html", parameters)
 
 class ChangeHandler(BaseHandler):
     def get(self):
         parameters = {}
-        parameters ["name", "email", "Kommentar"] = Message.query().fetch()
+        parameters ["messages"] = Message.query().fetch()
         return self.render_template("change.html", parameters)
 
 class EditHandler(BaseHandler):

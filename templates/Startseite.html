@@ -5,15 +5,19 @@
         <title>Gästebuch</title>
     </head>
     <body>
-        <h1>Gästebuch</h1>
-            <p>Liebe Gäste, wir freuen uns, dass Sie sich für unser Haus entschieden haben. Bitte hinterlassen Sie uns einen Kommentar, wir sind stets bemüht, uns weiterzuentwickeln</p>
+        <h1>Unser Gästebuch</h1>
+            <p>Liebe Gäste, wir freuen uns, dass Sie sich für unser Haus entschieden haben. Bitte hinterlassen Sie uns einen Kommentar, wir sind stets bemüht, uns weiterzuentwickeln.</p>
+        {% if logged_in %}
         <form method="Post" action="/Eingabe">
             <input name="Name" placeholder="Dein Name"/></br></br>
             <input email="Email" placeholder="Deine E-Mail"/></br></br>
             <input  text="Kommentar" placeholder="Dein Kommentar"/></br></br>
             <button type="submit"/>Abschicken</button>
-        </form>
-
+        </form> </br>
+        <a href="{{logout_url}}">Logout</a>
+        {% else %}
+        <p>Um einen Kommentar zu hinterlassen melde dich <a href="{{login_url}}">hier</a> an</p>
+        {% endif %}
     </body>
 
 </html>

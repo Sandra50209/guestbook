@@ -3,6 +3,7 @@ import os
 import jinja2
 import webapp2
 
+from google.appengine.api import users
 from models import Message
 
 template_dir = os.path.join(os.path.dirname(__file__), "templates")
@@ -30,7 +31,16 @@ class BaseHandler(webapp2.RequestHandler):
 
 class MainHandler(BaseHandler):
     def get(self):
-        return self.render_template("Startseite.html")
+            user = users.get_current_user()
+            if user:
+                logged_in = True
+                logout_url = users.create_logout_url("/")
+                parameters = {"logged_in" : logged_in, "logout_url" : logout_url, "user" : user}
+            else:
+                logged_in = False
+                login_url = users.create_login_url("/")
+                parameters = {"logged_in": logged_in, "login_url": login_url, "user": user}
+            return self.render_template("Startseite.html", parameters)
 
 class ResultHandler(BaseHandler):
     def post(self):
